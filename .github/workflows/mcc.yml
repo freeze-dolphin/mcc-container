@@ -1,12 +1,8 @@
 name: CI
 
 on:
-  push:
-    branches: ["master"]
-  pull_request:
-    branches: ["master"]
   schedule:
-    - cron: "0 */6 * * *" # in UTC time
+    - cron: '0 0,6,12,18 * * *'
   workflow_dispatch:
 
 jobs:
@@ -19,5 +15,6 @@ jobs:
       - name: Launch MCC
         env:
           PASSWD: ${{ secrets.PASSWD }}
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
         run: |
           bash launch.sh
